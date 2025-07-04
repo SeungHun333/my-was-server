@@ -21,8 +21,8 @@ public class WebServer {
                 logger.debug("waiting connect.. ");
                 Socket connection = serverSocket.accept();
                 logger.debug("connected");
-//                Runnable r = new RequestHandler(connection);
-//                executor.execute(r);
+                Runnable r = new RequestHandler(connection);
+                executor.execute(r);
             }
         } catch (IOException ex) {
             logger.error("Cannot start server", ex);
