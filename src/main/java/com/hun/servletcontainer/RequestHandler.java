@@ -1,16 +1,15 @@
-package com.hun;
+package com.hun.servletcontainer;
 
+import com.hun.http.HttpRequest;
 import com.hun.http.HttpResponse;
 import com.hun.servlet.Servlet;
-import com.hun.servlet.handler.DispatchServlet;
+import com.hun.servlet.DispatchServlet;
 import com.hun.util.HttpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
 import java.net.Socket;
-import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
 
 public class RequestHandler implements Runnable {
@@ -34,7 +33,7 @@ public class RequestHandler implements Runnable {
             ApplicationContext ac = ApplicationContext.getApplicationContext();
             Servlet servlet = DispatchServlet.getDispatcherServlet(ac);
 
-            byte[] body = res.getbody();
+            byte[] body = res.getBody();
             response200Header(dos, body.length);
             responseBody(dos, body);
         } catch (IOException ex) {
